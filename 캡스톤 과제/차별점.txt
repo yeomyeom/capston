@@ -1,0 +1,24 @@
+차별점
+
+1. 우리는 word2vec 아주대는 랜덤포레스트
+2. 우리는 영속성을 위해 로컬에서 돌아가고 아주대는 서버에서 돌아감
+3. 사다리랑 차이점을 두려면
+현재, v1.0 사다리는 사용자에게 머신러닝 결과와 혼동의 여부를 줄 수 있어, 신뢰성이 있는 블로그가 많이 포함되어있는 집단 / 신뢰성이 떨어지는 블로그가 많이 포함되어있는 집단으로 나누지는 않았습니다. 대신, type의 블로그로 나누어 결과와 해석을 제시합니다. 추후, 모델과 해석을 보완하여 업데이트할 예정입니다.
+4.https://programmers.co.kr/learn/courses/21
+5.SVM 자체는 그냥 퍼셉트론 하나랑 비슷한데
+축을 추가하는게 아니고
+상위 차원 공간에다가 집어던져서
+거기서 나눈다음에
+다시 차원을 낮춰서 데려와요
+6.
+https://ratsgo.github.io/machine%20learning/2017/05/23/SVM/
+https://ratsgo.github.io/machine%20learning/2017/05/30/SVM3/
+SVM 설명
+7.
+
+=================
+크롬 확장 프로그램 
+chrome.storage 사용법
+https://developer.chrome.com/apps/storage
+chrome.download 사용법
+http://blog.naver.com/PostView.nhn?blogId=luku756&logNo=221436133459&parentCategoryNo=&categoryNo=48&viewDate=&isShowPopularPosts=false&from=postView
