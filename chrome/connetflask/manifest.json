@@ -1,0 +1,17 @@
+{
+  "name": "ConnetFlask",
+  "version": "1.0",
+  "description": "connect to flask server",
+  "background": {
+    "scripts":["background.js"],
+    "persistent": true
+  },
+  "permissions":[
+    "tabs"
+  ],
+  "page_action":{
+    "default_popup": "popup.html",
+    "default_icon" : "logo.png"
+  },
+  "manifest_version": 2
+}
