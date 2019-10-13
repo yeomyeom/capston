@@ -7,6 +7,7 @@
 
 var allLinks = [];
 var visibleLinks = [];
+console.log("this come first")
 
 // Display all visible links.
 function showLinks() {
@@ -101,6 +102,8 @@ chrome.extension.onRequest.addListener(function(links) {
 // Set up event handlers and inject send_links.js into all frames in the active
 // tab.
 window.onload = function() {
+  window.innerWidth = 500;
+  window.innerHeight = 400;
   document.getElementById('filter').onkeyup = filterLinks;
   document.getElementById('regex').onchange = filterLinks;
   document.getElementById('toggle_all').onchange = toggleAll;

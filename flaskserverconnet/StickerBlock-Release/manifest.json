@@ -1,0 +1,29 @@
+{
+	"manifest_version": 2,
+
+	"name": "flaskserverconnetor",
+	"short_name": "FSC",
+	"description": "Connet to flask server!",
+	"version": "1.0",
+	"author": ["RE-A" , "yeomyeom"],
+
+	"background": {
+		"scripts": ["popup.js"],
+		"persistent": true
+	},
+
+	"permissions": [
+        "tabs",
+        "http://*/",
+        "https://*/"
+	],
+	"content_scripts": [ {
+        "js": ["jquery.min.js", "payload.js"],
+        "matches": [ "http://*/*", "https://*/*" ]    
+    } ],
+	
+	"browser_action": {
+		"default_icon": "StickerBlock.png",
+		"default_popup": "popup.html"
+	}
+}

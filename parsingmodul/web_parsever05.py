@@ -53,9 +53,7 @@ def secoundparse(url):  # Second Parsing of REAL URL
     filelist = os.listdir('./')
     i = 0
     for item in filelist:
-        if item.find('content'+str(i)+'.txt') is -1:#if contenti.txt is not exist
-            #with open('content'+str(i)+'.txt', 'wb') as file1:
-                #pickle.dump(texts, file1)
+        if item.find(str(i)) is -1:#if contenti.txt is not exist
             with open('content'+str(i)+'.txt', 'wb') as file1:
                 pickle.dump(text, file1)
             with open('picture'+str(i)+'.txt', 'wb') as file2:
@@ -63,7 +61,8 @@ def secoundparse(url):  # Second Parsing of REAL URL
             with open('sticker'+str(i)+'.txt', 'wb') as file3:
                 pickle.dump(stickers, file3)
         else:
-            i += 1
+            print('content'+str(i)+'.txt exist')
+            i = i + 1
 
 
 def exceptionparse(url):
