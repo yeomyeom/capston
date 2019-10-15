@@ -1,0 +1,8 @@
+TF-IDF(Term Frequency - Inverse Document Frequency) 란?
+TF(단어 빈도, term frequency)는 특정한 단어가 문서 내에 얼마나 자주 등장하는지를 나타내는 값. 이 값이 높을수록 문서에서 중요하다고 생각할 수 있다.
+하지만 하나의 문서에서 많이 나오지 않고 다른 문서에서 자주 등장하면 단어의 중요도는 낮아진다.
+DF(문서 빈도, document frequency)라고 하며, 이 값의 역수를 IDF(역문서 빈도, inverse document frequency)라고 한다.
+TF-IDF는 TF와 IDF를 곱한 값으로 점수가 높은 단어일수록 다른 문서에는 많지 않고 해당 문서에서 자주 등장하는 단어를 의미한다.
+
+
+https://wikidocs.net/31698

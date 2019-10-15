@@ -61,7 +61,6 @@ def secoundparse(url):  # Second Parsing of REAL URL
             with open('sticker'+str(i)+'.txt', 'wb') as file3:
                 pickle.dump(stickers, file3)
         else:
-            print('content'+str(i)+'.txt exist')
             i = i + 1
 
 
