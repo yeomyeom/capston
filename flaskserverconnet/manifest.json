@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 
-	"name": "StickerBlock - 네이버 블로그 스티커 차단 프로그램",
-	"short_name": "STB",
-	"description": "Block the stickers in Naver blog!",
+	"name": "server connector",
+	"short_name": "sc",
+	"description": "connect to ad parsing server",
 	"version": "1.0",
 	"author": ["RE-A" , "yeomyeom"],
 

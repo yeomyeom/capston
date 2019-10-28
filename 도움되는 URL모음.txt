@@ -1,0 +1,30 @@
+파이썬 비주얼라이제이션 라이브러리들
+https://zzsza.github.io/development/2018/08/24/data-visualization-in-python/
+
+AWS EC2에서 플라스크(Flask) 웹 서버 구동시키기
+https://ndb796.tistory.com/244
+
+크롬 확프 각종 이벤트 이름 정리
+https://developer.mozilla.org/ko/docs/Web/Events
+
+크롬 확프 팝업 띄우기
+https://sub0709.tistory.com/84
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
