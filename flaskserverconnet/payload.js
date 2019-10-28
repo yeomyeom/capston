@@ -1,5 +1,9 @@
 var currenturl = location.href;
 
+sendingMeg = JSON.parse(JSON.stringify(currenturl));
+chrome.runtime.sendMessage(sendingMeg);
+
+/*
 if(currenturl.indexOf("blog.naver.com") != -1){
     var mainFrame = document.getElementsByName('mainFrame');
     if(mainFrame[0] != null){
@@ -24,6 +28,7 @@ function hidestiker(){
     // img 형식으로 올라온 스티커를 제거하는 파트
     pics = document.getElementsByTagName('img');
     var re = /https\:\/\/storep-phinf\.pstatic\.net.*/
+    /*
     for(var i = 0 ; i<pics.length;i++ ){
         imgsrc = pics[i].src;
         if(re.exec(imgsrc)){
@@ -44,4 +49,4 @@ function hidestiker(){
         sendingMeg = JSON.parse(JSON.stringify(stickerNum));
         chrome.runtime.sendMessage(sendingMeg);
     }
-}
+}*/

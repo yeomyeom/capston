@@ -1,4 +1,4 @@
-#_*_coding: utf-8 _*_
+# -*- coding:utf-8 -*-
 from urllib.request import urlopen
 from urllib.error import HTTPError
 import re
@@ -52,6 +52,7 @@ def secoundparse(url):  # Second Parsing of REAL URL
 
     filelist = os.listdir('./')
     i = 0
+    '''
     for item in filelist:
         if item.find(str(i)) is -1:#if contenti.txt is not exist
             with open('content'+str(i)+'.txt', 'wb') as file1:
@@ -62,7 +63,28 @@ def secoundparse(url):  # Second Parsing of REAL URL
                 pickle.dump(stickers, file3)
         else:
             i = i + 1
+    '''
 
+    file1 = open('content.txt', 'a')
+    try:
+        file1.write(''.join(texts))
+        file1.write('\n')
+        file1.write('\n')
+    except:
+        print("pass")
+        pass
+    file2 = open('picture.txt', 'a')
+    file2.write(' '.join(pics))
+    file2.write('\n')
+    file2.write('\n')
+    file3 = open('sticker.txt', 'a')
+    file3.write(' '.join(stickers))
+    file3.write('\n')
+    file3.write('\n')
+    file1.close()
+    file2.close()
+    file3.close()
+    print('one blog finished')
 
 def exceptionparse(url):
     print('exceptionparse')

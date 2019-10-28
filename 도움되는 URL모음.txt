@@ -10,9 +10,11 @@ https://developer.mozilla.org/ko/docs/Web/Events
 크롬 확프 팝업 띄우기
 https://sub0709.tistory.com/84
 
+플라스크에 요청 보내기
+https://medium.com/@mystar09070907/%EC%9B%B9-%ED%8E%98%EC%9D%B4%EC%A7%80-client-%EC%97%90%EC%84%9C-%EC%A0%95%EB%B3%B4-%EB%B3%B4%EB%82%B4%EA%B8%B0-bf3aff952d3d
 
-
-
+JSON
+https://mkil.tistory.com/322
 
 
 
