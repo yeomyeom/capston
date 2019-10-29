@@ -5,14 +5,10 @@ window.addEventListener('load', function (evt) {
 	});
 });
 
-/*
-window.addEventListener('load', function (evt) {
-	file: 'payload.js'
-	chrome.tabs.create({url: "http://127.0.0.1:5000"});
-});
-*/
 chrome.runtime.onMessage.addListener(function (message) {
-	chrome.tabs.create({url: "http://127.0.0.1:5000"});
+	var serverurl = "http://127.0.0.1:5000";
+	//serverurl = serverurl + message;
+	chrome.tabs.create({url: serverurl});
 	alert(message);
 });
 
