@@ -19,7 +19,8 @@ https://mkil.tistory.com/322
 플라스크 서버 html
 https://opentutorials.org/module/3669/22003
 
-
+UI 탬플릿
+https://startbootstrap.com/themes/sb-admin-2/
 
 
 
