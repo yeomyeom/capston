@@ -22,6 +22,8 @@ https://opentutorials.org/module/3669/22003
 UI 탬플릿
 https://startbootstrap.com/themes/sb-admin-2/
 
+사다리 씹세들
+https://github.com/GreenD93/whale_contest_blog_credibility/blob/master/%EC%82%AC%EB%8B%A4%EB%A6%AC_Extension/background.js
 
 
 

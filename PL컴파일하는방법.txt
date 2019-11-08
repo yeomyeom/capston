@@ -1,0 +1,3 @@
+C:\경로> flex 야호야호.l  
+C:\경로> bison -d 야호야호.y  
+C:\경로> gcc lex.yy.c 야호야호.tab.c -o 야호야호  
