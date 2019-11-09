@@ -1,5 +1,5 @@
 var currenturl = location.href;
-
+var changeurl = '';
 if(currenturl.indexOf("blog.naver.com") != -1){
     var mainFrame = document.getElementsByName('mainFrame');
     if(mainFrame[0] != null){
@@ -7,7 +7,11 @@ if(currenturl.indexOf("blog.naver.com") != -1){
         location.href = innerHtmlUrl;
     }
     else{
-        sendingMeg = JSON.parse(JSON.stringify(currenturl));
+        currenturl = currenturl.split('?')[1];
+        changeurl += currenturl.split('&')[0];
+        changeurl += '&';
+        changeurl += currenturl.split('&')[1];
+        sendingMeg = JSON.parse(JSON.stringify(changeurl));
         chrome.runtime.sendMessage(sendingMeg);
     }
 }

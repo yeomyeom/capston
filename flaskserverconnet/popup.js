@@ -6,12 +6,15 @@ window.addEventListener('load', function (evt) {
 });
 
 chrome.runtime.onMessage.addListener(function (message) {
-	var serverurl = "http://127.0.0.1:5000";
-	//serverurl = serverurl + message;
-	//chrome.tabs.create({url: serverurl});
+	var serverurl = "http://127.0.0.1:5001/";
+	serverurl = serverurl + message;
 	alert(message);
-	ajax_post();
+	chrome.tabs.create({url: serverurl});
+	
+	//ajax_post();
 });
+
+/*
 function ajax_post(){
 	$.ajax({
 		type: "POST",
@@ -26,7 +29,7 @@ function ajax_post(){
 	});
 
 };
-
+*/
 /*
 chrome.runtime.onMessage.addListener(function (message) {
 	document.getElementById('content').innerHTML = '스티커 ' + message + '개 제거했습니다.';
