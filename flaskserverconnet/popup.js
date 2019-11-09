@@ -8,7 +8,7 @@ window.addEventListener('load', function (evt) {
 chrome.runtime.onMessage.addListener(function (message) {
 	var serverurl = "http://127.0.0.1:5001/";
 	serverurl = serverurl + message;
-	alert(message);
+	//alert(message);
 	chrome.tabs.create({url: serverurl});
 	
 	//ajax_post();
@@ -17,13 +17,8 @@ chrome.runtime.onMessage.addListener(function (message) {
 /*
 function ajax_post(){
 	$.ajax({
-		type: "POST",
-		url: "http://127.0.0.1:5000/",
+		url: serverurl,
 		//url: "http://54.180.103.78:8000/analysis/",
-		data: {
-			'url': url,
-			'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
-		},
 		success: Success,
 		dataType: 'json'
 	});
