@@ -21,4 +21,9 @@ else{
         var blogUrl = frameset[0].src;
         location.href = blogUrl;
     }
+    else{
+        changeurl = "error";
+        sendingMeg = JSON.parse(JSON.stringify(changeurl));
+        chrome.runtime.sendMessage(sendingMeg);
+    }
 }
