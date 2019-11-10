@@ -7,18 +7,22 @@
 	"version": "1.0",
 	"author": ["RE-A" , "yeomyeom"],
 
+	
 	"background": {
 		"scripts": ["popup.js"],
 		"persistent": true
 	},
-
+	
 	"permissions": [
         "tabs",
         "http://*/",
-        "https://*/"
+		"https://*/",
+		"127.0.0.1:5001/*",
+		"https://*/*",
+		"http://*/*"
 	],
 	"content_scripts": [ {
-        "js": ["jquery.min.js", "payload.js"],
+        "js": ["jquery-3.4.1.min.js", "payload.js","jquery.min.js"],
         "matches": [ "http://*/*", "https://*/*" ]    
     } ],
 	
