@@ -48,7 +48,7 @@ def secoundparse(url):  # Second Parsing of REAL URL
     text += re.findall('<span.*?>(.*?)</span>',secondhtml) #parse text
     
     for parse in text:
-        texts += re.findall("[가-힝 ]",parse)
+        texts += re.findall("[가-힝0-9# ]",parse)
 
     filelist = os.listdir('./')
     i = 0

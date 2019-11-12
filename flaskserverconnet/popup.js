@@ -20,8 +20,8 @@ function ajax_post(serverurl){
 	var data = {
 		'Emotion':0.0,
 		'Title':0.0,
-		'Link':['dumb'],
-		'Sticker':['dumb'],
+		'Link':[],
+		'Sticker':[],
 		'Tag':0.0
 	}
 
@@ -30,6 +30,7 @@ function ajax_post(serverurl){
 		dataType: 'json',
 		data : data,
 		success: function(data){
+			document.getElementById('Loading').innerHTML = ' ';
 			if(data.Emotion>0.0){
 				document.getElementById('Emotion').innerHTML = '글의 감정이 긍정으로 치우쳐 있습니다.';
 			}
