@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask
 from flask import request
 from flask_cors import CORS
 from urllib.request import urlopen
@@ -29,7 +29,7 @@ def parse(url):  # Second Parsing of REAL URL
             text += re.findall('<span.*?>(.*?)</span>',html) #parse text
           
             for parse in text:
-                  texts += re.findall("[가-힝0-9:. ]",parse)
+                  texts += re.findall("[가-힝0-9:.# ]",parse)
             return texts
       except:
             return None
@@ -39,8 +39,7 @@ def parse(url):  # Second Parsing of REAL URL
 def template_test(url):
       #url 받아서 파싱-완료
       #파싱된 파일들을 가지고 점수 출력
-      #해당 점수를 가지고 html 코드 생성
-      #return render_template('bad.html')
+      #해당 점수를 가지고 결과를 json 형태로 전송
       url = "https://blog.naver.com/PostView.nhn?" + url
       texts = []
       texts = parse(url)

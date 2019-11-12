@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 
-	"name": "server connector",
-	"short_name": "sc",
-	"description": "connect to ad parsing server",
+	"name": "Ad Blog Blocker",
+	"short_name": "ABB",
+	"description": "connect to ad parsing server and ",
 	"version": "1.0",
 	"author": ["RE-A" , "yeomyeom"],
 
@@ -15,19 +15,16 @@
 	
 	"permissions": [
         "tabs",
-        "http://*/",
-		"https://*/",
-		"127.0.0.1:5001/*",
 		"https://*/*",
 		"http://*/*"
 	],
 	"content_scripts": [ {
-        "js": ["jquery-3.4.1.min.js", "payload.js","jquery.min.js"],
+        "js": ["jquery-3.4.1.min.js", "payload.js"],
         "matches": [ "http://*/*", "https://*/*" ]    
     } ],
 	
 	"browser_action": {
-		"default_icon": "StickerBlock.png",
+		"default_icon": "icon.png",
 		"default_popup": "popup.html"
 	}
 }
