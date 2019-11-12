@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask_cors import CORS
+#pip install flask_cors
 from urllib.request import urlopen
 from urllib.error import HTTPError
 import json
@@ -38,12 +39,12 @@ def parse(url):  # Second Parsing of REAL URL
 @app.route("/<url>")
 def template_test(url):
       #url 받아서 파싱-완료
-      #파싱된 파일들을 가지고 점수 출력
-      #해당 점수를 가지고 결과를 json 형태로 전송
       url = "https://blog.naver.com/PostView.nhn?" + url
       texts = []
       texts = parse(url)
       #result = " ".join(texts)
+
+      #파싱된 파일들을 가지고 점수 출력
       emotion = -0.75
       title = 0.5
       link = ['https://weble.com', 'https://ad.com']
@@ -58,8 +59,9 @@ def template_test(url):
             'Same':same,
             'Tag':tag
             }
+      
+      #해당 점수를 가지고 결과를 json 형태로 전송
       jsonstr = json.dumps(result)
-      #jsonstr = result;
       return jsonstr;
 
 @app.route("/error")

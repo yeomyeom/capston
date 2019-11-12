@@ -1,6 +1,7 @@
 var currenturl = location.href;
 var changeurl = '';
-while(1==1){
+var count = 0;
+while(count < 3){
     if(currenturl.indexOf("blog.naver.com") != -1){
         var mainFrame = document.getElementsByName('mainFrame');
         if(mainFrame[0] != null){
@@ -23,11 +24,6 @@ while(1==1){
             var blogUrl = frameset[0].src;
             location.href = blogUrl;
         }
-        else{
-            changeurl = "error";
-            sendingMeg = JSON.parse(JSON.stringify(changeurl));
-            chrome.runtime.sendMessage(sendingMeg);
-            break;
-        }
     }
+    count++;
 }
