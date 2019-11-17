@@ -52,12 +52,12 @@ def template_test(url):
       same = []
       tag = 0.9
       result ={
-            'Emotion':emotion,
-            'Title':title,
-            'Link':link,
-            'Sticker':sticker,
-            'Same':same,
-            'Tag':tag
+            'Emotion':emotion, # -1(negative emotion) ~ +1(positive emotion)
+            'Title':title,     # 0 ~ 1 (keyword match rate)
+            'Link':link,       # [img URL1, img URL2, ...]
+            'Sticker':sticker, # [sticker URL1, sticker URL2, ...]
+            'Same':same,       # [Blogs of similar content uploaded on the same day]
+            'Tag':tag          # 0 ~ 1 (keyword match rate)
             }
       
       #해당 점수를 가지고 결과를 json 형태로 전송
