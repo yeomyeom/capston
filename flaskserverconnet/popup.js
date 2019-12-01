@@ -8,7 +8,8 @@ window.addEventListener('load', function (evt) {
 });
 var send_or_not = 0;
 chrome.runtime.onMessage.addListener(function (message) {
-	var serverurl = "http://127.0.0.1:5001/";
+	var serverurl = "http://127.0.0.1:5000/";
+	//var serverurl = "http://13.209.74.192/";
 	serverurl = serverurl + message;
 	//alert(message);
 	//chrome.tabs.create({url: serverurl});
@@ -20,6 +21,7 @@ chrome.runtime.onMessage.addListener(function (message) {
 			send_or_not = 1;
 		}*/
 		ajax_post(serverurl);
+		//alert(serverurl);
 	}
 	else{
 		document.getElementById('Loading').innerHTML = ' ';
@@ -28,13 +30,6 @@ chrome.runtime.onMessage.addListener(function (message) {
 });
 
 function ajax_post(serverurl){
-	/*var data = {
-		'Emotion':0.0,
-		'Title':0.0,
-		'Link':[],
-		'Sticker':[],
-		'Tag':0.0
-	}*/
 
 	jQuery.ajax({
 		url: serverurl,
@@ -42,6 +37,8 @@ function ajax_post(serverurl){
 		success: function(data){
 			document.getElementById('Loading').innerHTML = ' ';
 			document.getElementById('Message').innerHTML = ' ';
+
+			document.getElementById('Categnum').innerHTML = data.Categnum;
 			if(data.Emotion>0.0){
 				document.getElementById('Emotion').innerHTML = '글의 감정이 긍정으로 치우쳐 있습니다.';
 			}
@@ -54,15 +51,17 @@ function ajax_post(serverurl){
 			else{
 				document.getElementById('Title').innerHTML = '글의 내용이 제목과 불일치합니다.';
 			}
-			document.getElementById('Link').innerHTML = '링크링크';
-			document.getElementById('Sticker').innerHTML = '스티커스티커';
-		
+			document.getElementById('Link').innerHTML = data.Link;
+			document.getElementById('Sticker').innerHTML = data.Sticker;
+			document.getElementById('Same').innerHTML = data.Same;
 			if(data.Tag>0.5){
 				document.getElementById('Tag').innerHTML = '글의 태그가 제목과 유사합니다.';
 			}
 			else{
 				document.getElementById('Tag').innerHTML = '글의 태그가 제목과 불일치합니다.';
 			}
+			document.getElementById('Model').innerHTML = data.Model;
+
 		}
 	});
 };

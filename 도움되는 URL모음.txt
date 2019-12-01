@@ -27,6 +27,10 @@ https://yumere.tistory.com/59
 
 https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-14-04
 
+konlpy 설치하기
+http://konlpy.org/ko/latest/install/
+
+
 server ID
 i-002c7567d75d69cb2
 13.209.74.192
