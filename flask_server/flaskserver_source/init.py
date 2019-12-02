@@ -22,6 +22,52 @@ import numpy
 application = Flask(__name__)
 CORS(application)
 
+def loading():
+    print("load start\n")
+    global model
+    global count_vec
+    global tf_trans
+    global selectChi
+    global advList
+    global nonAdvList
+    global posi
+    global nega
+    global posiList
+    global negaList
+    global advImageUrl
+    global advImageList
+    global babyList
+    global itList
+    global restList
+    
+    model = load('mlmodel.joblib')
+    count_vec = load('countvec.joblib')
+    tf_trans = load('tf_trans.joblib')
+    selectChi = load('select.joblib')
+    
+    with open('sticker_adv.pickle','rb') as file:
+        advList = pickle.load(file)
+    with open('sticker_nonAdv.pickle','rb') as file2:
+        nonAdvList = pickle.load(file2)
+        
+    posi = open("posiList.txt",'r',encoding='utf-8')
+    nega = open("negaList.txt",'r',encoding='utf-8')
+    posiList = posi.readlines()
+    negaList = nega.readlines()
+    
+    advImageUrl = open("picture_adv_UTF-8.txt", 'r', encoding='UTF-8')
+    advImageList = advImageUrl.readlines()
+
+    with open('categ_baby.txt','r',encoding='UTF-8') as baby:
+        babyList = baby.readlines()
+    with open('categ_it.txt', 'r', encoding='UTF-8') as it:
+        itList = it.readlines()
+    with open('categ_restaurant.txt', 'r', encoding='UTF-8') as rest:
+        restList = rest.readlines()
+
+
+    print("load finish\n")
+    
 def title_content_check(texts):
     # 1
     full_content = texts
@@ -121,10 +167,10 @@ def tag_content_check(texts):
 # 3. for문으로 사용자 sticker 속 광고성/비광고성 스티커 개수를 세서 변수에 저장한다
 # 4. 광고성/비광고성 비율을 출력, 비광고성이 0일 경우 광고성 개수 * (-1)을 출력한다. 출력값이 0이면 광고성 스티커가 없다는 뜻이다.
 def advStickerRatio(stickers):
-    with open('sticker_adv.pickle','rb') as file:
-        advList = pickle.load(file)
-    with open('sticker_nonAdv.pickle','rb') as file2:
-        nonAdvList = pickle.load(file2)
+    #with open('sticker_adv.pickle','rb') as file:
+        #advList = pickle.load(file)
+    #with open('sticker_nonAdv.pickle','rb') as file2:
+        #nonAdvList = pickle.load(file2)
     userStickerString = stickers
     result = []
     #print(userStickerString)
@@ -146,11 +192,9 @@ def advStickerRatio(stickers):
     return result
 
 def posi_nega_check(texts):
-    posi = open("posiList.txt",'r',encoding='utf-8')
-    nega = open("negaList.txt",'r',encoding='utf-8')
-    #cont = open("advData.txt", 'r',encoding='utf-8')
-    posiList = posi.readlines()
-    negaList = nega.readlines()
+    #posi = open("posiList.txt",'r',encoding='utf-8')
+    #nega = open("negaList.txt",'r',encoding='utf-8')
+    
     content = texts
 
     posiNum = float(0)
@@ -161,8 +205,8 @@ def posi_nega_check(texts):
     for negIdx in negaList:
 
         negaNum +=content.count(negIdx[:-1])
-    print(posiNum)
-    print(negaNum)
+    print("pos num" + str(posiNum))
+    print("neg num" + str(negaNum))
     if (negaNum == 0): return posiNum * -1
     else: return posiNum/negaNum
 
@@ -170,8 +214,8 @@ def advImageChecking(pics):
     userImageList = pics
     newUIU = []
     newUIU2 = []
-    advImageUrl = open("picture_adv_UTF-8.txt", 'r', encoding='UTF-8')
-    advImageList = advImageUrl.readlines()
+    #advImageUrl = open("picture_adv_UTF-8.txt", 'r', encoding='UTF-8')
+    #advImageList = advImageUrl.readlines()
     newAIU = []
     newAIU2 = []
     newAIU3 = []
@@ -200,12 +244,12 @@ def advImageChecking(pics):
 
 def categorizing(texts):
     content = texts
-    with open('categ_baby.txt','r',encoding='UTF-8') as baby:
-        babyList = baby.readlines()
-    with open('categ_it.txt', 'r', encoding='UTF-8') as it:
-        itList = it.readlines()
-    with open('categ_restaurant.txt', 'r', encoding='UTF-8') as rest:
-        restList = rest.readlines()
+    #with open('categ_baby.txt','r',encoding='UTF-8') as baby:
+        #babyList = baby.readlines()
+    #with open('categ_it.txt', 'r', encoding='UTF-8') as it:
+        #itList = it.readlines()
+    #with open('categ_restaurant.txt', 'r', encoding='UTF-8') as rest:
+        #restList = rest.readlines()
 
     babyNum = 0
     itNum = 0
@@ -316,13 +360,13 @@ def sendVal(texts, pics, stickers):
     elif(titleValue < 0.002 and titleValue >=0): titleColor = 3 #초록
     else: titleColor = 2 #노랑
     '''
-    return categNum, advPosiNega, 0, advImgList , advStickerList, tagValue, titleValue
+    return categNum, advPosiNega, advImgList , advStickerList, tagValue, titleValue
 
 def mlmodel(texts):
-    model = load('mlmodel.joblib')
-    count_vec = load('countvec.joblib')
-    tf_trans = load('tf_trans.joblib')
-    selectChi = load('select.joblib')
+    #model = load('mlmodel.joblib')
+    #count_vec = load('countvec.joblib')
+    #tf_trans = load('tf_trans.joblib')
+    #selectChi = load('select.joblib')
     count = count_vec.transform(texts)
     cut = selectChi.transform(count)
     tfval = tf_trans.transform(cut)
@@ -354,8 +398,8 @@ def template_test(url):
       texts.append(text)
       #result = " ".join(texts)
       #파싱된 파일들을 가지고 점수 출력
-      model = mlmodel(texts)
-      categnum, emotion, same, link, sticker, tag, title = sendVal(text,pics,stickers)
+      models = mlmodel(texts)
+      categnum, emotion, link, sticker, tag, title = sendVal(text,pics,stickers)
       #text는 문자열, pics 리스트, stickers 리스트
       #categNum, advPosiNega, 0, advImgList , advStickerList, tagValue, titleValue
 
@@ -365,9 +409,8 @@ def template_test(url):
             'Title':title,     # 0 ~ 1 (keyword match rate)
             'Link':link,       # [img URL1, img URL2, ...]
             'Sticker':sticker, # [sticker URL1, sticker URL2, ...]
-            'Same':same,       # [Blogs of similar content uploaded on the same day]
             'Tag':tag,         # 0 ~ 1 (keyword match rate)
-            'Model':model      # adv or nadv
+            'Model':models     # adv or nadv
             }
       
       #해당 점수를 가지고 결과를 json 형태로 전송
@@ -380,4 +423,5 @@ def error():
       return result
 
 if __name__=="__main__":
+      loading()
       application.run(host="0.0.0.0")
