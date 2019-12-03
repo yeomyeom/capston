@@ -1,0 +1,30 @@
+{
+	"manifest_version": 2,
+
+	"name": "Ad Blog Blocker",
+	"short_name": "ABB",
+	"description": "connect to ad parsing server",
+	"version": "1.0",
+	"author": ["RE-A" , "yeomyeom"],
+
+	
+	"background": {
+		"scripts": ["popup.js"],
+		"persistent": true
+	},
+	
+	"permissions": [
+		"tabs",
+		"https://*/*",
+		"http://*/*"
+	],
+	"content_scripts": [ {
+        "js": ["jquery-3.4.1.min.js", "payload.js","loader.js"],
+        "matches": [ "http://*/*", "https://*/*" ]    
+	} ],
+	
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	}
+}

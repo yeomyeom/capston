@@ -1,34 +1,72 @@
 <!doctype html>
 <html>
-<style type="text/css" >
+
+<style type="text/css">
 	body {
-		min-width: 300px;
-		max-width: 500px; 
-		max-width: 100%;
-		vertical-align:middle;
+		background-color: rgb(234, 234, 234);
+		background-image: url("img/abb_base.jpg");
+		background-repeat: no-repeat;
+
+		min-width: 400px;
+		min-height: 400px;
+		max-width: 400px;
+		max-height: 400px;
+
+		vertical-align: left;
+		
+
+		font-size: 15px;
 	}
-	</style >		
+</style>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Server connector</title>
-	<script src="jquery-3.4.1.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
 	<script src="popup.js"></script>
+	<script src="popper.min.js" type="text/javascript"></script>
+	<script src="bootstrap.min.js" type="text/javascript"></script>
+
 
 </head>
 
 <body width:400px>
-	
-	<h3>블로그의 신뢰도</h1>
-	<p id='Loading'>서버와 연결중에 있습니다. 잠시만 기다려주세요.</p>
-	<p id='Categnum'> </p>
-	<p id='Message'> </p>
-	<p id='Emotion'> </p>
-	<p id='Title'> </p>
-	<p id='Link'> </p>
-	<p id='Sticker'> </p>
-	<p id='Same'> </p>
-	<p id='Tag'> </p>
-	<p id='Model'> </p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<table border="1" bordercolor="yellow" width="300" height="300">
+
+		<tr align="center">
+			<td height="20px"><img id="Title_img" src="img/feng.jpg" width="20px" height="20px"></td>
+			<td id='Title' class="text-warning">제목&본문 유사도 </td>
+		</tr>
+		<tr align="center">
+			<td height="20px"><img id="Tag_img" src="img/shinho_green.png" width="20px" height="20px"></td>
+			<td id='Tag' class="text-warning">태그&본문 유사도</td>
+		</tr>
+		<tr align="center">
+			<td height="20px"><img id="Link_img" src="img/shinho_red.png" width="20px" height="20px"></td>
+			<td id='Link' class="text-warning">광고 이미지 갯수</td>
+		</tr>
+		<tr align="center">
+			<td height="20px"><img id="Sticker_img" src="img/shinho_yellow.png" width="20px" height="20px"></td>
+			<td id='Sticker' class="text-warning">광고 스티커 갯수</td>
+		</tr>
+		<tr align="center">
+			<td height="20px"><img id="Emotion_img" src="img/feng.jpg" width="20px" height="20px"></td>
+			<td id='Emotion' class="text-warning">긍부정비율</td>
+		</tr>
+		<tr align="center">
+			<td height="20px"><img id="Svm_img" src="img/feng.jpg" width="20px" height="20px"></td>
+			<td id='Svm' class="text-warning">글의 내용</td>
+		</tr>
+	</table>
+
+	<br>
+	<br>
+	<p color:yellow id='Categnum'>서버와 연결 중입니다.</p>
 
 </body>
+
 </html>

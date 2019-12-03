@@ -18,6 +18,7 @@ import re
 import pickle
 import os
 import numpy
+import time, datetime
 
 application = Flask(__name__)
 CORS(application)
@@ -70,6 +71,7 @@ def loading():
     
 def title_content_check(texts):
     # 1
+    content = texts
     full_content = texts
     # 2
     try:
@@ -77,20 +79,22 @@ def title_content_check(texts):
         content = contentArr[1]
         content = content[0:25]
     except:
-        contentArr = content.split('퀵에디터가 오픈했어요')
-        content = contentArr[1]
-        content = content[0:40]
+        try:
+            contentArr = content.split('퀵에디터가 오픈했어요')
+            content = contentArr[1]
+            content = content[0:40]
+        except:
+            content = 'unknown'
 
         okt = Okt()
         tag_token_list = okt.nouns(content)
 
-    #print(content)
 
     # 3
     #konlpy 처리
     okt = Okt()
     title_token_list = okt.nouns(content)
-    #print(title_token_list)
+    #print("Title : " + title_token_list)
 
     # 4
     # title_token_list에서 제목 단어 수 세서 출력
@@ -102,7 +106,8 @@ def title_content_check(texts):
         title_used += temp
     #print('제목 단어 수',len(title_token_list))
 
-
+    print("Title : ")
+    print(title_token_list)
     # 6 출력
     # 제목단어 사용률/전체 단어
 
@@ -117,7 +122,7 @@ def title_content_check(texts):
 # 1.content.txt 내용을 content 변수에 단일 스트링형식으로 담는다.
 # 2.제목이 있을만한 쪽을 추출해낸다
 # 3.주제 연관도에 쓸 명사 토큰만 추출
-def tag_content_check(texts):
+def tag_content_check(texts, taglist):
     # 1
 
     full_content = texts
@@ -125,7 +130,7 @@ def tag_content_check(texts):
     # 2
     #halfContentLen: content 스트링의 길이/2 저장
     #ContentLen: content 스트링의 길이 저장
-
+    ''' 
     halfContentLen = round(len(contentForTag)/2)
     contentLen = len(contentForTag)
 
@@ -144,7 +149,9 @@ def tag_content_check(texts):
         else:
             #print(j[0])
             tags.append(j[1])
-    #print(tags)
+    print(tags)
+    '''
+    tags = taglist
     okt = Okt()
     tags_string =''
     for z in tags:
@@ -159,6 +166,8 @@ def tag_content_check(texts):
         #print(temp)
         useful_word_count += temp
     #print('태그 단어 수',len(tags_konl))
+    print("tag:")
+    print(tags_konl)
     return round( useful_word_count/len(full_content_temp.split()),3)
 
 # sticker.txt에서 광고성 스티커와 비광고성 스티커의 비율을 구해 출력한다(double형)
@@ -185,8 +194,9 @@ def advStickerRatio(stickers):
     for j in nonAdvList:
         if( j in userStickerString):
             #nonAdvNum += 1
-            result.append(j)
-
+            #result.append(j)
+    print("sticker urls")
+    print(result)
     #if(nonAdvNum == 0): return advNum * -1
     #else: return advNum/nonAdvNum
     return result
@@ -231,14 +241,15 @@ def advImageChecking(pics):
     for k in newUIU2:
         for l in advImageList:
             if(k in l): result.append(k)
-
+    print("img url: ")
+    print(result)
     #2
-    okt = Okt()
-    temp = []
-    for t in userImageList:
-        temp.append(okt.nouns(i))
-        #print(temp[0])
-        if(len(temp) != 0): result.append(t)
+    #okt = Okt()
+    #temp = []
+    #for t in userImageList:
+    #    temp.append(okt.nouns(i))
+    #    #print(temp[0])
+    #    if(len(temp) != 0): result.append(t)
 
     return result
 
@@ -270,7 +281,7 @@ def categorizing(texts):
     #출력값 3: it
     #출력값 2: 맛집
 
-def sendVal(texts, pics, stickers):
+def sendVal(texts, pics, stickers, taglist):
     # 0. 카테고리 정하기
     categNum = categorizing(texts)
 
@@ -341,7 +352,7 @@ def sendVal(texts, pics, stickers):
 
     # 5. float형 소수점 3자리
     # 빨:0.06 이상  초:0.004이하
-    tagValue = tag_content_check(texts)
+    tagValue = tag_content_check(texts, taglist)
     #print("태그-본문연관성: ", tagValue)
     #tagColor = 0
     '''
@@ -375,53 +386,62 @@ def mlmodel(texts):
     return nn
 
 def web_parse(url):     # Function of Open HTML.
-      try:
-            html = urlopen(url).read().decode('utf-8')
-      except HTTPError as e:
-            html = None
-      return html
+    try:
+        html = urlopen(url).read().decode('utf-8')
+    except HTTPError as e:
+        html = None
+    return html
 
 #===============================================================================
 @application.route("/<url>")
 def template_test(url):
-      #url 받아서 파싱
-      url = "https://blog.naver.com/PostView.nhn?" + url
-      pics, stickers, texts, text = [],[],[],[]  # arrays of pic, sticker, text.
-      html = web_parse(url)
-      pics += re.findall('<img.*?src="(.*?)".*?>', html) #parse pics number
-      stickers += re.findall('<img.*? src="(.*?)".*?class="se-sticker-image" />',html)  #parse sticker number
-      text += re.findall('<span.*?>(.*?)</span>',html) #parse text
-      for parse in text:
-            texts += re.findall("[가-힝# ]",parse)
-      text = "".join(texts)
-      texts = []
-      texts.append(text)
-      #result = " ".join(texts)
-      #파싱된 파일들을 가지고 점수 출력
-      models = mlmodel(texts)
-      categnum, emotion, link, sticker, tag, title = sendVal(text,pics,stickers)
-      #text는 문자열, pics 리스트, stickers 리스트
-      #categNum, advPosiNega, 0, advImgList , advStickerList, tagValue, titleValue
-
-      result ={
-            'Categnum':categnum,
-            'Emotion':emotion, # -1(negative emotion) ~ +1(positive emotion)
-            'Title':title,     # 0 ~ 1 (keyword match rate)
-            'Link':link,       # [img URL1, img URL2, ...]
-            'Sticker':sticker, # [sticker URL1, sticker URL2, ...]
-            'Tag':tag,         # 0 ~ 1 (keyword match rate)
-            'Model':models     # adv or nadv
-            }
-      
-      #해당 점수를 가지고 결과를 json 형태로 전송
-      jsonstr = json.dumps(result)
-      return jsonstr;
+    #url 받아서 파싱
+    now = datetime.datetime.now()
+    start = time.time()
+    url = "https://blog.naver.com/PostView.nhn?" + url
+    pics, stickers, texts, text, taglist = [],[],[],[],[]  # arrays of pic, sticker, text 
+    html = web_parse(url)
+    pics += re.findall('<img.*?src="(.*?)".*?>', html) #parse pics number
+    stickers += re.findall('<img.*? src="(.*?)".*?class="se-sticker-image" />',html)  #parse sticker number
+    text += re.findall('<span.*?>(.*?)</span>',html) #parse text
+    taglist += re.findall('<span class="__se-hash-tag">#(.*?)</span>', html)
+    print("tag list")
+    print(taglist)
+    for parse in text:
+        texts += re.findall("[가-힝# ]",parse)
+    text = "".join(texts)
+    texts = []
+    texts.append(text)
+    #result = " ".join(texts)
+    #파싱된 파일들을 가지고 점수 출력
+    models = mlmodel(texts)
+    categnum, emotion, link, sticker, tag, title = sendVal(text,pics,stickers,taglist)
+    #text는 문자열, pics 리스트, stickers 리스트
+    #categNum, advPosiNega, 0, advImgList , advStickerList, tagValue, titleValue
+    result ={
+          'Categnum':categnum,
+          'Emotion':emotion, # -1(negative emotion) ~ +1(positive emotion)
+          'Title':title,     # 0 ~ 1 (keyword match rate)
+          'Link':link,       # [img URL1, img URL2, ...]
+          'Sticker':sticker, # [sticker URL1, sticker URL2, ...]
+          'Tag':tag,         # 0 ~ 1 (keyword match rate)
+          'Model':models     # adv or nadv
+          }
+    
+    #해당 점수를 가지고 결과를 json 형태로 전송
+    end = time.time()
+    elasped = end - start
+    f = open("timelog.log", 'a')
+    f.write(str(now) + ' Lead time :' + str(elasped) + ' sec\n')
+    f.close()
+    jsonstr = json.dumps(result)
+    return jsonstr;
 
 @application.route("/error")
 def error():
-      result = "네이버 블로그가 아닙니다."
-      return result
+    result = "네이버 블로그가 아닙니다."
+    return result
 
 if __name__=="__main__":
-      loading()
-      application.run(host="0.0.0.0")
+    loading()
+    application.run(host="0.0.0.0")
