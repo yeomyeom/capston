@@ -2,11 +2,8 @@
 from urllib.request import urlopen
 from urllib.error import HTTPError
 import re
-import pickle
-import os
 
 read_file = './input.txt'
-write_file = './output.txt'
 
 def web_parse(url):     # Function of Open HTML.
     try:
@@ -41,46 +38,31 @@ def secoundparse(url):  # Second Parsing of REAL URL
     print('secoundparse')
     pics, stickers, texts, text = [],[],[],[]  # arrays of pic, sticker, text.
     secondhtml = web_parse(url)
-    #pics += re.findall('<img.*?src="(.*?)".*?data-width="(.*?)" data-height="(.*?)".*?>', secondhtml) #parse pics number
     pics += re.findall('<img.*?src="(.*?)".*?>', secondhtml) #parse pics number
-    #stickers += re.findall('<img.*? src="(.*?)".*?class="se-sticker-image" />',secondhtml)  #parse sticker number
     stickers += re.findall('<img.*? src="(.*?)".*?class="se-sticker-image" />',secondhtml)  #parse sticker number
     text += re.findall('<span.*?>(.*?)</span>',secondhtml) #parse text
     
     for parse in text:
-        texts += re.findall("[가-힝0-9# ]",parse)
+        texts += re.findall("[가-힝# ]",parse)
 
-    filelist = os.listdir('./')
     i = 0
-    '''
-    for item in filelist:
-        if item.find(str(i)) is -1:#if contenti.txt is not exist
-            with open('content'+str(i)+'.txt', 'wb') as file1:
-                pickle.dump(text, file1)
-            with open('picture'+str(i)+'.txt', 'wb') as file2:
-                pickle.dump(pics, file2)
-            with open('sticker'+str(i)+'.txt', 'wb') as file3:
-                pickle.dump(stickers, file3)
-        else:
-            i = i + 1
-    '''
 
     file1 = open('content.txt', 'a')
     try:
         file1.write(''.join(texts))
         file1.write('\n')
-        file1.write('\n')
+        file1.write('=============================\n')
     except:
         print("pass")
         pass
     file2 = open('picture.txt', 'a')
     file2.write(' '.join(pics))
     file2.write('\n')
-    file2.write('\n')
+    file2.write('=============================\n')
     file3 = open('sticker.txt', 'a')
     file3.write(' '.join(stickers))
     file3.write('\n')
-    file3.write('\n')
+    file3.write('=============================\n')
     file1.close()
     file2.close()
     file3.close()
@@ -94,7 +76,7 @@ def exceptionparse(url):
     for linkElement in links:
         inner_html += re.findall('src=\'(.*?)\'', linkElement)
     print(inner_html)  #inner_html is list of string 
-    link = inner_html[0]  #no need to parse hidden html(contain blog music)
+    link = inner_html[0]
     return link
 
 # Main function of "Parsing Phase"
@@ -111,7 +93,6 @@ def Parse(url):  # url = "https://blog.naver.com/~~~"
         link = target_url + firstparse(link)
         secoundparse(link)
 
-
 # Lines for Simple debugging.
 if __name__ == "__main__":
     f = open(read_file,'r')
@@ -120,5 +101,3 @@ if __name__ == "__main__":
         url = f.readline()
         Parse(url)
     f.close()
-
-"""     BeautifulSoup is too slow to use parsing program """
