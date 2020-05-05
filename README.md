@@ -35,9 +35,11 @@ The link about [positive/negative words](http://web.yonsei.ac.kr/dslab/Journal/s
 7. Click the red ‘AD’ button and UI window will be opened.
 
 When Error occured
+
 ![](03.png)
 
 Success
+
 ![](01.png)
 
 8. The server isn’t turned on now, so it won’t work in real world.
