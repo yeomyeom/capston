@@ -28,15 +28,19 @@ The link about [positive/negative words](http://web.yonsei.ac.kr/dslab/Journal/s
 3. Go to chrome://extensions/ and turn the ‘developer mode’ on.
 4. Load the ‘ChromeExtension’ folder from the downloaded file. (The folder where ‘manifest.json’ included)
 5. After this process, ABB will be on the browser.
-[02]()
+
+[02](02.png)
+
 6. Turn on ‘Ad Blog Blocker’ and go inside naver blog.
 7. Click the red ‘AD’ button and UI window will be opened.
-[03]()
+
+[03](03.png)
+
 8. The server isn’t turned on now, so it won’t work in real world.
 
 
 ### Demo
-[01]()
+[01](01.png)
 
 
 ### Roll of Each Members
