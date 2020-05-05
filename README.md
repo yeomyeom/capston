@@ -1,6 +1,8 @@
 # Capston Design
 
-## Naver Blog Blocker Chrome Extension <네이버 블로그 광고성 판별 크롬 확장프로그램>
+## Ad Blog Blocker Chrome Extension 
+
+<네이버 블로그 광고성 판별 크롬 확장프로그램>
 
 ### Introduction
 Blog is originally for doing memo about personal thoughts or information and sharing them with others. There are blogs which are handled by the film such as ‘Naver’. Because it is related to its searching portal, there is a clear advantage that the blogs can be disposed from web users easily. However, there are the users who abuse this advantage. With paid fee from advertisement film, the users advertise the information about certain products. The problem is that the information is not honest reviews but intended stories for personal profit from advertisers. There is no difference between reading blogs and advertisement sites.
@@ -20,7 +22,21 @@ There are several ways to recognize that it’s an advertisement or not.
 The link about [positive/negative words](http://web.yonsei.ac.kr/dslab/Journal/sentiment%20dictionary.pdf)
 
 
-### Proposal
+### How to use
+1. Download the zip file from the link above.
+2. Extract the file and open the Chrome.
+3. Go to chrome://extensions/ and turn the ‘developer mode’ on.
+4. Load the ‘ChromeExtension’ folder from the downloaded file. (The folder where ‘manifest.json’ included)
+5. After this process, ABB will be on the browser.
+[02]()
+6. Turn on ‘Ad Blog Blocker’ and go inside naver blog.
+7. Click the red ‘AD’ button and UI window will be opened.
+[03]()
+8. The server isn’t turned on now, so it won’t work in real world.
+
+
+### Demo
+[01]()
 
 
 ### Roll of Each Members
