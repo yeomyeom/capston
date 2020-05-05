@@ -23,7 +23,7 @@ The link about [positive/negative words](http://web.yonsei.ac.kr/dslab/Journal/s
 
 
 ### How to use
-1. Download the zip file from the link above.
+1. Download the zip file from the [link](https://github.com/yeomyeom/capston) or git clone https://github.com/yeomyeom/capston.
 2. Extract the file and open the Chrome.
 3. Go to chrome://extensions/ and turn the ‘developer mode’ on.
 4. Load the ‘ChromeExtension’ folder from the downloaded file. (The folder where ‘manifest.json’ included)
