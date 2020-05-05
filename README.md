@@ -34,11 +34,11 @@ The link about [positive/negative words](http://web.yonsei.ac.kr/dslab/Journal/s
 6. Turn on ‘Ad Blog Blocker’ and go inside naver blog.
 7. Click the red ‘AD’ button and UI window will be opened.
 
-When Error occured
+#### When Error occured
 
 ![](03.png)
 
-Success
+#### Success
 
 ![](01.png)
 
