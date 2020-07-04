@@ -4,6 +4,27 @@
 
 <네이버 블로그 광고성 판별 크롬 확장프로그램>
 
+## How to install
+```
+git clone 
+
+pip3 install -r requirement.txt
+
+==== install konlpy ==== 
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jre
+sudo apt-get install g++ openjdk-8-jdk python3-dev
+(openjdk-7 is no longer used but openjdk-8 is fully compatible with openjdk-7)
+
+cd flaskserver_source
+sudo chmod 755 *
+./start_init.bat
+
+Then the flask server starts
+```
+[how to install konlpy](https://dawnlog.net/21)
+
 ### Introduction
 Blog is originally for doing memo about personal thoughts or information and sharing them with others. There are blogs which are handled by the film such as ‘Naver’. Because it is related to its searching portal, there is a clear advantage that the blogs can be disposed from web users easily. However, there are the users who abuse this advantage. With paid fee from advertisement film, the users advertise the information about certain products. The problem is that the information is not honest reviews but intended stories for personal profit from advertisers. There is no difference between reading blogs and advertisement sites.
 
