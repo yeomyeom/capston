@@ -1,7 +1,7 @@
+#-*- coding:utf-8 -*-
 from flask import Flask
 from flask import request
 from flask_cors import CORS
-#pip install flask_cors
 from urllib.request import urlopen
 from urllib.error import HTTPError
 
@@ -19,9 +19,6 @@ import pickle
 import os
 import numpy
 import time, datetime
-
-application = Flask(__name__)
-CORS(application)
 
 def loading():
     print("load start\n")
@@ -65,10 +62,13 @@ def loading():
         itList = it.readlines()
     with open('categ_restaurant.txt', 'r', encoding='UTF-8') as rest:
         restList = rest.readlines()
-
-
     print("load finish\n")
+
+loading()
+application = Flask(__name__)
+CORS(application)
     
+
 def title_content_check(texts):
     # 1
     content = texts
@@ -194,7 +194,7 @@ def advStickerRatio(stickers):
     for j in nonAdvList:
         if( j in userStickerString):
             #nonAdvNum += 1
-            #result.append(j)
+            result.append(j)
     print("sticker urls")
     print(result)
     #if(nonAdvNum == 0): return advNum * -1
